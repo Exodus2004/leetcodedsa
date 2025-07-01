@@ -2,24 +2,26 @@ class Solution {
     public double findMaxAverage(int[] nums, int k) {
 
         int n = nums.length;
-
-        double max = Integer.MIN_VALUE;
         int sum = 0;
 
-        for(int i=0;i<n-k+1;i++){
-            sum =0;
-            for(int j = i;j<i+k;j++){
-                sum +=nums[j];
+        for(int i =0;i<k;i++) sum += nums[i];
+        double presentaverage = (double)sum/k;
+        double average = presentaverage;
 
-                
-                
-            }
-            double presentaverage = (double)sum/k;
 
-            max = Math.max(max,presentaverage);
-            
-        }
-        return max;
-        
+
+        for(int i =k;i<n;i++){
+
+            sum = sum - nums[i-k] + nums[i];
+
+            presentaverage =(double)sum/k;
+
+            average = Math.max(average,presentaverage);
+            presentaverage = average;
+        } 
+
+        return average;
+
+
     }
 }
