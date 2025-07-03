@@ -10,7 +10,7 @@ class Solution {
 
     public void swap(int a[],int i,int j){
 
-        while(i<=j){
+        while(i<j){
             int t = a[i];
             a[i] = a[j];
             a[j] = t;
