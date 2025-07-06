@@ -12,7 +12,7 @@ class Solution {
             if(nums[mid]==target) return mid;
 
             if(nums[l]<=nums[mid]){
-                if(nums[l]<=target && target<nums[mid]) r = mid-1;
+                if(nums[l]<=target && target<=nums[mid]) r = mid-1;
                 else l = mid+1;
             }
             else{
