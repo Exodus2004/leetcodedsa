@@ -1,32 +1,18 @@
 class Solution {
     public boolean canJump(int[] nums) {
         int n = nums.length;
-        int dp[] = new int[n+1];
+        int intial = 0;
+        for(int i = 0;i<n;i++){
 
-        Arrays.fill(dp,-1);
+            if(i>intial) return false;
 
-        return fun(nums,n,0,dp);
+            intial = Math.max(intial,i+nums[i]);
+
+        }
+
+
+        return true;
         
-
-    }
-    static boolean fun(int a[],int n,int i,int dp[]){
-        if(i>=n-1) return true;
-        if(dp[i]!=-1) return dp[i]==1;
-
-        if(a[i]==0){
-            dp[i] = 0;
-            return false;
-        }
-
-        for(int j =1;j<=a[i];j++){
-            if(fun(a,n,j+i,dp)){
-                dp[j] = 1;
-
-                return true;
-            }
-        }
-
-        dp[i] = 0;
-        return false;
+        
     }
 }
