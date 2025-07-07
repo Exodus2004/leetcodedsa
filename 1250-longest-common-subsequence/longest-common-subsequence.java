@@ -16,9 +16,12 @@ class Solution {
         if(p.charAt(i)==s.charAt(j)){
             return 1+fun(i+1,j+1,p,s,m,n,dp);
         }
-        int c1= fun(i+1,j,p,s,m,n,dp);
-        int c2= fun(i,j+1,p,s,m,n,dp);
+       else{
+         int c1= fun(i+1,j,p,s,m,n,dp);
+         int c2= fun(i,j+1,p,s,m,n,dp);
+         return dp[i][j]=Math.max(c1,c2);
+       }
 
-        return dp[i][j]=Math.max(c1,c2);
+        
     }
 }
