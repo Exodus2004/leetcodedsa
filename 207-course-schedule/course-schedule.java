@@ -8,12 +8,10 @@ class Solution {
         for(int i[]:prerequisites ){
 
             adj.get(i[1]).add(i[0]);
+            indeg[i[0]]++;
 
         }
-        for(int i=0;i<numCourses;i++){
-            for(int j :adj.get(i)) indeg[j]++;
-        }
-
+        
         Queue<Integer> q = new LinkedList<>();
         for(int i = 0;i<numCourses;i++){
             if(indeg[i]==0) q.add(i);
