@@ -1,28 +1,25 @@
 class Solution {
     public int numSquares(int n) {
-
         List<Integer> l = new ArrayList<>();
-        for(int i=1;i*i<=n;i++){
-            l.add(i*i);
-        }
+        for(int i =1;i*i<=n;i++) l.add(i*i);
         System.out.println(l);
-        Collections.reverse(l);
+        Integer dp[][]= new Integer[n+1][l.size()];
 
-        Integer dp[][] = new Integer[l.size()][n+1];
-        return fun(l,0,n,l.size(),dp);
+        return fun(n,l,l.size()-1,dp);
+       
 
         
     }
-    static int fun(List<Integer> l,int i,int n,int size,Integer dp[][]){
-        if(i>=size || n<0) return 1000000;
-        if(n==0) return 0;
-        if(dp[i][n]!=null) return dp[i][n];
-        int c1 = fun(l,i+1,n,size,dp);
-        int c2 = 1+fun(l,i,n-l.get(i),size,dp);
+    static int fun(int n,List<Integer> l,int i,Integer dp[][]){
+    if(i<0|| n<0) return 10000007;
+   
 
-        return dp[i][n]=Math.min(c1,c2);
-        
-       
+    if(n==0) return 0;
+     if(dp[n][i]!=null) return dp[n][i];
 
+    int c1 = 1+fun(n-l.get(i),l,i,dp);
+    int c2 = fun(n,l,i-1,dp);
+
+    return dp[n][i] =Math.min(c1,c2);
     }
 }
