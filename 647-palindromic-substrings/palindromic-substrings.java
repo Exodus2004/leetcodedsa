@@ -1,26 +1,26 @@
 class Solution {
     public int countSubstrings(String s) {
-        int count =0;
+        if(s.length()==0) return 0;
+        int ans  =0;
 
-        for(int i= 0;i<s.length();i++){
-            for(int j =i;j<s.length();j++){
-                if(palin(s.substring(i,j+1))) count++;
-            }
+
+        for(int i=0;i<s.length();i++){
+            ans+=fun(s,i,i)+fun(s,i,i+1);
+            
+
         }
-        return count;
+        return ans;
         
     }
-    static boolean palin(String s){
-        int i = 0;
-        int j = s.length()-1;
+    static int fun(String s,int i,int j){
+        if(i>=s.length() || i<0 || j>=s.length() || j<0) return 0;
 
-        while(i<=j){
-            if(s.charAt(i)==s.charAt(j)){
-                i++;
-                j--;
-            }
-            else return false;
+        if(s.charAt(i)==s.charAt(j)){
+            return 1+fun(s,i-1,j+1);
         }
-        return true;
+        else return 0;
+
+
+
     }
 }
