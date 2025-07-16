@@ -2,19 +2,19 @@ class Solution {
     int p1 = 0;
     int p2 = 0;
     public boolean predictTheWinner(int[] nums) {
-        List<Integer> l = new ArrayList<>();
-        for(int i:nums) l.add(i);
-        if(fun(l,0,l.size()-1)>=0) return true;
+       Integer dp[][] = new Integer[nums.length+1][nums.length+1];
+        if(fun(nums,0,nums.length-1,dp)>=0) return true;
         else return false;
         
     }
-    int fun(List<Integer> l,int start,int end){
-        if( start==end) return l.get(start);
+    int fun(int a[],int start,int end,Integer dp[][]){
+        if( start==end) return a[start];
+        if(dp[start][end]!=null) return dp[start][end];
 
-        int pickstarting = l.get(start)-fun(l,start+1,end);
-        int pickending = l.get(end)-fun(l,start,end-1);
+        int pickstarting = a[start] - fun(a,start+1,end,dp);
+        int pickending = a[end] - fun(a,start,end-1,dp);
 
-        return Math.max(pickstarting,pickending);
+        return dp[start][end]=Math.max(pickstarting,pickending);
 
        
 
