@@ -1,10 +1,8 @@
 class Solution {
-    int p1 = 0;
-    int p2 = 0;
     public boolean predictTheWinner(int[] nums) {
        Integer dp[][] = new Integer[nums.length+1][nums.length+1];
         if(fun(nums,0,nums.length-1,dp)>=0) return true;
-        else return false;
+        return false;
         
     }
     int fun(int a[],int start,int end,Integer dp[][]){
@@ -15,12 +13,5 @@ class Solution {
         int pickending = a[end] - fun(a,start,end-1,dp);
 
         return dp[start][end]=Math.max(pickstarting,pickending);
-
-       
-
-
-
-        
-
     }
 }
