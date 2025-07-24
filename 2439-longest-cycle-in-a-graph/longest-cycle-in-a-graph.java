@@ -1,67 +1,45 @@
 class Solution {
-    int ans = -1;
+    
     public int longestCycle(int[] edges) {
-    
-    int n = edges.length;
-   
+        List<List<Integer>> adj = new ArrayList<>();
+        for(int i=0;i<edges.length;i++){
+            adj.add(new ArrayList<>());
 
-    List<List<Integer>> adj = new ArrayList<>();
-
-    for(int i =0;i<n;i++) adj.add(new ArrayList<>());
-
-    for(int i =0;i<n;i++){
-        adj.get(i).add(edges[i]);
-        
-    }
-    for(List<Integer> l:adj) System.out.println(l);
-
-   
-    boolean vis[] = new boolean[n];
-
-    for(int i =0;i<n;i++){
-        if(!vis[i]){
-                                Map<Integer,Integer> map = new HashMap<>();
-
-
-
-            map.put(i,1);
-            dfs(adj,i,vis,map);
         }
-    }
-
-    return ans;
-    
-
-
-    
-
-
-
+        for(int i =0;i<edges.length;i++){
+            if(edges[i]!=-1)adj.get(i).add(edges[i]);
+        }
+        for(List<Integer>i:adj) System.out.println(i);
+        boolean vis[]= new boolean[edges.length];
+        int cp[]= new int[edges.length];
+        int val[] = new int[1];
+        val[0] = -1;
+        for(int i=0;i<edges.length;i++){
+            if(!vis[i]){
+                dfs(0,adj,vis,cp,i,val);
+            }
+        }
+        return val[0];
+        
 
         
     }
-     void dfs(List<List<Integer>> adj,int i,boolean vis[],Map<Integer,Integer> map){
-
-        vis[i] = true;
-
-        int j = adj.get(i).get(0);
-    
-        
-            if(j!=-1 && !vis[j]){
-                vis[j] = true;
-                map.put(j,map.get(i)+1);
-                dfs(adj,j,vis,map);
+    void dfs(int count,List<List<Integer>> adj,boolean vis[],int cp[],int src,int val[]){
+        count++;
+        vis[src] = true;
+        cp[src] = count;
+        for(int i :adj.get(src)){
+            if(!vis[i]){
+                dfs(count,adj,vis,cp,i,val);
+            }
+            else if(cp[i]!=0){
+                val[0]= Math.max(val[0],count-cp[i]+1);
 
             }
-            else if(j!=-1 && map.containsKey(j)){
-               ans = Math.max(ans,map.get(i)-map.get(j)+1);
 
-
-            }
-        
-       
-
-        
+        }
+        cp[src] =0;
+        return;
 
     }
 }
