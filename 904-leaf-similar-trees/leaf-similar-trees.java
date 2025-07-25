@@ -24,11 +24,8 @@ class Solution {
         System.out.println( l1);
         System.out.println( l2);
 
-        for(int i=0;i<l1.size();i++){
-            if(!l1.get(i).equals(l2.get(i))) return false;
-        }
-        return true;
-
+        
+        return l1.equals(l2);
 
         
     }
