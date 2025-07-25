@@ -32,7 +32,7 @@ class Solution {
                 int nr = x+dr[i];
                 int nc = y+dc[i];
 
-                if(nr<m && nc<n&& nr>=0 && nc>=0 && a[nr][nc]!=color && image[nr][nc]==image[sr][sc]){
+                if(nr<m && nc<n&& nr>=0 && nc>=0 && a[nr][nc]!=color && a[nr][nc]==image[sr][sc]){
                     a[nr][nc] = color;
                     q.add(new pair(nr,nc));
                 }
