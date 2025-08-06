@@ -7,12 +7,16 @@ class Solution {
         int r = 0;
         int sum =0;
         int count = 0;
-        System.out.println(average(arr,0,2));
+        //System.out.println(average(arr,0,2));
         while(r<n){
+            sum+=arr[r];
             
             
             if(r-l+1==k){
-                if(average(arr,l,r)>=threshold) count++;
+
+                int av = sum/k;
+                if(av>=threshold) count++;
+                sum-=arr[l];
                 
                 l++;
             }
@@ -23,10 +27,10 @@ class Solution {
         return count;
         
     }
-    int average(int a[],int i,int j){
-        int sum = 0;
-        for(int k =i;k<=j;k++) sum+=a[k];
+    // int average(int a[],int i,int j){
+    //     int sum = 0;
+    //     for(int k =i;k<=j;k++) sum+=a[k];
 
-        return sum/(j-i+1);
-    }
+    //     return sum/(j-i+1);
+    // }
 }
