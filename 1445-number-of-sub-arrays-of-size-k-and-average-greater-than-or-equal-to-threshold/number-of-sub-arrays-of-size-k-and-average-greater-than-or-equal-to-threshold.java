@@ -13,7 +13,7 @@ class Solution {
             
             if(r-l+1==k){
                 if(average(arr,l,r)>=threshold) count++;
-                sum-=arr[l];
+                
                 l++;
             }
            
