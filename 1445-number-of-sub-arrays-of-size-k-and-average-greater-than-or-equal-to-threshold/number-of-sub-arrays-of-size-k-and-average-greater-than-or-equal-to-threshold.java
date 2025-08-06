@@ -14,8 +14,8 @@ class Solution {
             
             if(r-l+1==k){
 
-                int av = sum/k;
-                if(av>=threshold) count++;
+               
+                if(sum>=threshold * k) count++;
                 sum-=arr[l];
                 
                 l++;
