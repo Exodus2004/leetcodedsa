@@ -1,23 +1,56 @@
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-        List<Integer> res = new ArrayList<>();
         
-        for(int i =0;i<s.length()-p.length()+1;i++){
-            if(fun(p,s.substring(i,i+p.length()))) res.add(i);
-        }
-        //if(fun(p,s.substring(s.length()-p.length(),s.length()))) res.add(s.length()-p.length());
-        return res;
+        int n = s.length();
+        int l = 0;
+        int r = 0;
+        int k = p.length();
+        List<Integer> res = new ArrayList<>();
+        Map<Character,Integer> map = new HashMap<>();
+        Map<Character,Integer> window = new HashMap<>();
+        for(char c:p.toCharArray()) map.put(c,map.getOrDefault(c,0)+1);
 
+
+        while(r<n){
+           window.put(s.charAt(r),window.getOrDefault(s.charAt(r),0)+1);
+            
+
+
+            while(r-l+1==k){
+                if(fun(window,map)) res.add(l);
+                System.out.println(fun(window,map));
+
+                window.put(s.charAt(l),window.get(s.charAt(l))-1);
+
+                if(window.get(s.charAt(l))==0) window.remove(s.charAt(l));
+
+                l++;
+            
+                
+               
+                
+            }
+           
+            r++;
+
+        }
+        ;
+        //
+        return res;
         
     }
-    boolean fun(String s,String p){
-        int a[]= new int[26];
-        for(int i = 0;i<s.length();i++){
-            a[s.charAt(i)-'a']++;
-            a[p.charAt(i)-'a']--;
-        }
-        for(int i:a) if(i!=0) return false;
+    boolean fun(Map<Character,Integer> a,Map<Character,Integer> b){
+         if(a.size()!=b.size()) return false;
 
-        return true;
+         for(char key:a.keySet()){
+            if(!b.containsKey(key)) return false;
+            int q = a.get(key);
+            int p = b.get(key);
+            if(q!=p) return false;
+         }
+
+         return true;
+
+        
     }
 }
