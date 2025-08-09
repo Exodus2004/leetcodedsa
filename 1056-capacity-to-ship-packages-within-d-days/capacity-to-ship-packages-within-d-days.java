@@ -24,8 +24,8 @@ class Solution {
     }
     public int shipWithinDays(int[] weights, int days) {
         int l = 1;
-        int r = 0;
-        for(int i:weights) r+=i;
+        int r = 25 * (int)Math.pow(10,6);
+       
 
         while(l<=r){
             int mid = l+(r-l)/2;
