@@ -1,8 +1,11 @@
 class Solution {
     public int smallestDivisor(int[] nums, int threshold) {
-        Arrays.sort(nums);
+        
         int l = 1;
-        int r = nums[nums.length-1];
+        int r = nums[0];
+        for(int x:nums){
+            if(x>r) r = x;
+        }
 
         while(l<=r){
             int m = (l+r)/2;
