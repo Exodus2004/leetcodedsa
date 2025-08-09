@@ -10,11 +10,11 @@ class Solution {
         while(l<=r){
             int m = (l+r)/2;
 
-            if(fun(nums,m)<=threshold){
+            if(fun(nums,m,threshold)){
                 r = m-1;
 
             }
-            else if(fun(nums,m)>threshold) l =m+1;
+            else if(!fun(nums,m,threshold)) l =m+1;
             else r = m-1;
         }
         return l;
@@ -23,11 +23,15 @@ class Solution {
 
         
     }
-    int fun(int a[],int val){
+    boolean fun(int a[],int val,int k){
     int sum = 0;
         for(int i=0;i<a.length;i++){
-            sum +=(int)Math.ceil((float)a[i]/val);
+            sum =(int)Math.ceil((float)a[i]/val);
+
+            k -=sum;
+            if(k<0) return false;
         }
-        return sum;
+        return true;
+        
     }
 }
