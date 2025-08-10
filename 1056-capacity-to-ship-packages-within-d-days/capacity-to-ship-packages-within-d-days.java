@@ -1,25 +1,17 @@
 class Solution {
     boolean fun(int a[],int days,int max){
-        int temp = 0;
-        
-        
-       for(int i = 0;i<a.length;i++){
-        int sum  =a[i];
-        if(sum>max) return false;
-       
-        if(sum+temp>max){
+       int value = 0;
+       for(int num: a){
+        if(num > max) return false;
+        if(value+num>max){
             days--;
-            temp  = 0;
+            value=0;
+
         }
-        temp+=sum;
-        if(days==0) return false;
-
-        
-
-        
+        value+=num;
+        if(days<=0) return false;
        }
-        
-        return true;
+       return true;
 
     }
     public int shipWithinDays(int[] weights, int days) {
