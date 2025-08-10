@@ -4,7 +4,10 @@ class Solution {
         int count = 0;
         List<Integer> res = new ArrayList<>();
         for(int i:a){
-            count+=(i+max-1)/max;
+            int val = i/max;
+            if(i%max!=0) val++;
+            count+=val;
+
 
         }
         return count<=n;
