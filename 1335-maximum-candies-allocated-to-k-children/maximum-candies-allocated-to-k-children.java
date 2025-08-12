@@ -18,10 +18,7 @@ class Solution {
         int l =1;
         int r = (int)Math.pow(10,7);
         
-         long sum =0;
-        for(int i:candies) sum+=i;
-        
-        if(sum< k) return 0;
+         
         
 
         while(l<=r){
@@ -33,7 +30,8 @@ class Solution {
 
             else l = mid+1;
         }
-        return r;
+        return r==-1?0:r;
+
         
     }
 }
