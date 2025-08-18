@@ -4,6 +4,8 @@ class Solution {
         int write = 0;
 
         int i = 0;
+        StringBuilder sb = new StringBuilder();
+    
         while(i<n){
             int count = 0;
             char curr = chars[i];
@@ -12,17 +14,15 @@ class Solution {
                 count++;
                 i++;
             }
-            chars[write] = curr;
-            write++;
-            if(count>1){
-                String p = String.valueOf(count);
-                for(char c:p.toCharArray()){
-                    chars[write] = c;
-                    write++;
-                }
-            }
+            sb.append(curr);
+            if(count>1) sb.append(count);
+            
         }
-        return write;
+        char c[] =  sb.toString().toCharArray();
+        for(int x = 0;x<c.length;x++){
+            chars[x] = c[x];
+        }
+        return sb.length();
         
     }
 }
