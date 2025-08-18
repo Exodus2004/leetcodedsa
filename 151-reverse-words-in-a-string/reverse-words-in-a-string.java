@@ -1,6 +1,6 @@
 class Solution {
     public String reverseWords(String s) {
-        String a[] = s.trim().split("\s+");
+        String a[] = s.trim().split("\\s+");
         int left= 0;
         int right = a.length-1;
 
