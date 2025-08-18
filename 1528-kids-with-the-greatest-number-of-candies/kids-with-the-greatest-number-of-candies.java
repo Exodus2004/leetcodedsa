@@ -5,10 +5,15 @@ class Solution {
         List<Boolean> list = new ArrayList<>();
 
         for(int i=0;i<candies.length;i++){
-            if(candies[i]+extraCandies>=max) list.add(true);
-            else list.add(false);
+            list.add(check(candies,candies[i]+extraCandies));
         }
         return list;
         
+    }
+    boolean check(int a[],int val){
+        for(int i:a){
+            if(val<i) return false;
+        }
+        return true;
     }
 }
