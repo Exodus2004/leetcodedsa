@@ -8,21 +8,15 @@ class Solution {
 
         while(right<nums.length){
             sum +=nums[right];
-            System.out.println(sum);
             
-            
-                
-                
-               
-            
-            
-                while(set.contains(nums[right])){
+            while(set.contains(nums[right])){
                     set.remove(nums[left]);
                     sum = sum-nums[left];
                     
                     left++;
 
                 }
+                max = Math.max(max,sum);
                 set.add(nums[right]);
                 
                 
@@ -32,7 +26,7 @@ class Solution {
              
 
             right++;
-            max = Math.max(max,sum);
+            
 
            
 
