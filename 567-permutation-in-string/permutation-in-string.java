@@ -1,52 +1,38 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        if (s1.length() > s2.length()) return false;
-
-        Map<Character, Integer> map = new HashMap<>();
-        Map<Character, Integer> window = new HashMap<>();
-
-        // Build frequency map of s1
-        for (char c : s1.toCharArray()) {
-            map.put(c, map.getOrDefault(c, 0) + 1);
-        }
-
+        if(s1.length()>s2.length()) return false;
+        Map<Character,Integer> map = new HashMap<>();
+        Map<Character,Integer> window = new HashMap<>();
+        for(char c:s1.toCharArray()) map.put(c,map.getOrDefault(c,0)+1);
+        int k= map.size();
         int l = 0;
         int r = 0;
 
-        while (r < s2.length()) {
-            // Add s2[r] to window
-            char rightChar = s2.charAt(r);
-            window.put(rightChar, window.getOrDefault(rightChar, 0) + 1);
 
-            // Check if current window has the target length
-            if (r - l + 1 == s1.length()) {
-                // Check if it's an anagram of s1
-                if (fun(map, window)) {
-                    return true;
-                }
+        while(r<s2.length()){
+            window.put(s2.charAt(r),window.getOrDefault(s2.charAt(r),0)+1);
 
-                // Remove leftmost character from window
-                char leftChar = s2.charAt(l);
-                window.put(leftChar, window.get(leftChar) - 1);
-                if (window.get(leftChar) == 0) {
-                    window.remove(leftChar);
-                }
-                l++; // shrink window
+            if(r-l+1==s1.length()){
+                if(fun(map,window)) return true;
+                
+                window.put(s2.charAt(l),window.get(s2.charAt(l))-1);
+                if(window.get(s2.charAt(l))==0) window.remove(s2.charAt(l));
+                l++;
+
             }
-
+            
+            
             r++;
         }
-
         return false;
+        
     }
+    boolean fun(Map<Character,Integer> map,Map<Character,Integer> window){
 
-    // Check if window has same frequency as s1
-    boolean fun(Map<Character, Integer> map, Map<Character, Integer> window) {
-        if (map.size() != window.size()) return false;
-        for (char c : map.keySet()) {
-            if (!window.containsKey(c) || !map.get(c).equals(window.get(c))) {
-                return false;
-            }
+        if(map.size()!=window.size()) return false;
+        for(char c:map.keySet()){
+            if(!window.containsKey(c)) return false;
+            if(!map.get(c).equals(window.get(c))) return false;
         }
         return true;
     }
