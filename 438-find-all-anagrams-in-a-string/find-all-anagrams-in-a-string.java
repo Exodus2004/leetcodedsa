@@ -16,8 +16,8 @@ class Solution {
             
 
 
-            while(r-l+1==k){
-                if(fun(window,map)) res.add(l);
+            while(r-l+1>k){
+                
                 System.out.println(fun(window,map));
 
                 window.put(s.charAt(l),window.get(s.charAt(l))-1);
@@ -30,6 +30,7 @@ class Solution {
                
                 
             }
+            if(fun(window,map)) res.add(l);
            
             r++;
 
