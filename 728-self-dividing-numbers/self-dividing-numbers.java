@@ -8,14 +8,15 @@ class Solution {
         
     }
     boolean fun(int x){
-        if(x<9) return true;
-        
+        if(String.valueOf(x).contains(String.valueOf(0))) return false;
 
-        String s = String.valueOf(x);
-        for(char c:s.toCharArray()){
-            if(c=='0') return false;
-            if(x%(int)(c-'0')!=0) return false;
-        }
+        int val =x;
+
+        while(val>0){
+            int l = val%10;
+            if(x%l!=0) return false;
+            val = val/10;
+        } 
         return true;
     }
 }
