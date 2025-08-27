@@ -8,12 +8,13 @@ class Solution {
         
     }
     boolean fun(int x){
-        if(String.valueOf(x).contains(String.valueOf(0))) return false;
 
         int val =x;
 
         while(val>0){
             int l = val%10;
+
+            if(l==0) return false;
             if(x%l!=0) return false;
             val = val/10;
         } 
