@@ -1,38 +1,20 @@
 class Solution {
     public int maxPoints(int[][] points) {
         if(points.length==1) return 1;
-        List<Integer> list1 = new ArrayList<>();
-        List<Integer> list2 = new ArrayList<>();
-        for(int i[]:points){
-            list1.add(i[0]);
-            list2.add(i[1]);
-        }
-        
-        
         int max = 0;
-        
-        for(int i = 0;i<list1.size();i++){
+        for(int i = 0;i<points.length;i++){
             Map<String,Integer> map = new HashMap<>();
-            for(int j = 0;j<list2.size();j++){
+            for(int j = 0;j<points.length;j++){
                 if(i!=j){
                 int count = 0;
-                int x1 = list1.get(i);
-                int y1 = list2.get(i);
-                int x2 = list1.get(j);
-                int y2 = list2.get(j);
-                
-
-                int dx = x2-x1;
-                int dy = y2-y1;
-                
+                int dx = points[i][0]-points[j][0];
+                int dy = points[i][1]-points[j][1];
                 int g = gcd(dx,dy);
                 String val = dx/g+" "+dy/g;
                 map.put(val,map.getOrDefault(val,0)+1);
-
             }
-            for (int freq : map.values()) {
-            max = Math.max(max, freq + 1); 
-            }
+            for (int freq : map.values()) max = Math.max(max, freq + 1); 
+            
 
         }
     
