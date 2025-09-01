@@ -22,7 +22,6 @@ class Solution {
         int v = 0;
         for(int i=0;i<count-n-1;i++) start = start.next;
     
-        System.out.println(start.val);
 
         start.next = start.next.next;
 
