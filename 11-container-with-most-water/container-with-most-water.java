@@ -8,8 +8,8 @@ class Solution {
             int area = Math.min(height[l],height[r])*(r-l);
             max = Math.max(max,area);
             int min = Math.min(height[l],height[r]);
-            while(l<r && height[l]<=min) l++;
-            while(l<r && height[r]<=min) r--;
+            if(height[l]<=min) while(l<r && height[l]<=min) l++;
+            else while(l<r && height[r]<=min) r--;
 
         }
         return max;
