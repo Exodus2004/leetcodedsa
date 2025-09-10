@@ -10,7 +10,6 @@ class Solution {
         for(int i=0;i<=n;i++){
             lp*=nums[i];
             rp*=nums[n-i];
-            System.out.println(lp+" "+rp);
             max = Math.max(max,Math.max(rp,lp));
             if(lp==0) lp = 1;
             if(rp==0) rp= 1;
