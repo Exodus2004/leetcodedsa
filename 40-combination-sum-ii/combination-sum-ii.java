@@ -2,14 +2,18 @@ class Solution {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<Integer> temp = new ArrayList<>();
         Set<List<Integer>> res = new HashSet<>();
+        
         Arrays.sort(candidates);
-        fun(0,0,target,candidates,temp,res);
+        int suf[] = new int[candidates.length];
+        suf[suf.length-1] = candidates[candidates.length-1];
+        for(int i=suf.length-2;i>=0;i--) suf[i] = suf[i+1]+candidates[i];
+        fun(0,0,target,candidates,temp,res,suf);
         
         List<List<Integer>> k =new ArrayList<>(res);
         return k;
         
     }
-    void fun(int i,int sum ,int target,int a[],List<Integer> temp,Set<List<Integer>> res){
+    void fun(int i,int sum ,int target,int a[],List<Integer> temp,Set<List<Integer>> res,int suf[]){
         if(sum>target) return;
         if(i>=a.length){
             if(sum==target){
@@ -18,11 +22,12 @@ class Solution {
 
             return;
         }
+        if(sum+suf[i]<target) return;
         
         
         sum+=a[i];
         temp.add(a[i]);
-        fun(i+1,sum,target,a,temp,res);
+        fun(i+1,sum,target,a,temp,res,suf);
         //after this call we have found all the valid combinations with a[i]
 
         sum-=a[i];
@@ -36,6 +41,6 @@ class Solution {
         int next = i+1;
         while(next<a.length && a[next]==a[i]) next++;
         
-        fun(next,sum,target,a,temp,res);
+        fun(next,sum,target,a,temp,res,suf);
     }
 }
