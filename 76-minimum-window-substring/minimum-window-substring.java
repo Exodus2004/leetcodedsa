@@ -1,46 +1,43 @@
 class Solution {
     public String minWindow(String s, String t) {
-        Map<Character,Integer> required = new HashMap<>();
-        for(int i=0;i<t.length();i++) required.put(t.charAt(i),required.getOrDefault(t.charAt(i),0)+1);
-
+        if(t.length()>s.length()) return "";
+        String x = "";
+        Map<Character,Integer> map = new HashMap<>();
+        for(char c:t.toCharArray()) map.put(c,map.getOrDefault(c,0)+1);
+        int size = map.size();
+        int l = 0;
+        int r = 0;
         Map<Character,Integer> window = new HashMap<>();
-        int start = -1;
-        int minlen = Integer.MAX_VALUE;
-        int left = 0;
         int formed = 0;
+        int start = 0;
+        int len = Integer.MAX_VALUE;
 
-        for(int right = 0;right<s.length();right++){
-            char current = s.charAt(right);
-            window.put(current,window.getOrDefault(current,0)+1);
-
-            if(required.containsKey(current) && window.get(current).equals(required.get(current))) formed++;
-
-            while(formed==required.size() && left <=right){
-                if(minlen>right-left+1){
-                    minlen = right-left+1;
-                    start = left;
+        while(r<s.length()){
+            window.put(s.charAt(r),window.getOrDefault(s.charAt(r),0)+1);
+            while(valid(map,window)){
+                if(len>r-l+1){
+                    start = l;
+                    len = r-l+1;
                 }
-
-                char curleft = s.charAt(left);
-
-                window.put(curleft,window.get(curleft)-1);
-
-                if(required.containsKey(curleft) && window.get(curleft)<required.get(curleft)) formed--;
-
-
-
-
-                left++;
+               
+                window.put(s.charAt(l),window.get(s.charAt(l))-1);
+                if(window.get(s.charAt(l))==0) window.remove(s.charAt(l));
+                l++;
 
 
             }
-
-
+            r++;
         }
-        return start ==-1?"":s.substring(start,start+minlen);
-      
+        return len==Integer.MAX_VALUE?"" :s.substring(start,start+len);
 
         
-        
+    }
+    boolean valid(Map<Character,Integer> map ,Map<Character,Integer> window){
+        for(char c:map.keySet()){
+            if(!window.containsKey(c)) return false;
+            if(map.get(c)>window.get(c)) return false;
+        }
+        return true;
+
     }
 }
