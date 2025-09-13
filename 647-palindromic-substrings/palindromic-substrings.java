@@ -1,26 +1,23 @@
 class Solution {
     public int countSubstrings(String s) {
-        if(s.length()==0) return 0;
-        int ans  =0;
-
-
-        for(int i=0;i<s.length();i++){
-            ans+=fun(s,i,i)+fun(s,i,i+1);
-            
-
+        int n = s.length();
+        int count = n;
+        List<String> res = new ArrayList<>();
+        for(int i =0;i<n;i++){
+            for(int j =i+1;j<n;j++){
+                if(valid(s,i,j)) count++;
+            }
         }
-        return ans;
+        
+        return count;
         
     }
-    static int fun(String s,int i,int j){
-        if(i>=s.length() || i<0 || j>=s.length() || j<0) return 0;
-
-        if(s.charAt(i)==s.charAt(j)){
-            return 1+fun(s,i-1,j+1);
+    boolean valid(String s,int i,int j){
+        while(i<j){
+            if(s.charAt(i)!=s.charAt(j)) return false;
+            i++;
+            j--;
         }
-        else return 0;
-
-
-
+        return true;
     }
 }
