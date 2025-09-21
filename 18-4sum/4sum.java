@@ -6,7 +6,7 @@ class Solution {
         Arrays.sort(nums);
         for(int i=0;i<n-3;i++){
             for(int j = i+1;j<n-2;j++){
-                
+                if(i!=0 && nums[i]==nums[i-1]) continue;
                 int l = j+1;
                 int r = n-1;
                 while(l<r){
@@ -15,6 +15,7 @@ class Solution {
                         res.add(Arrays.asList(nums[i],nums[j],nums[l],nums[r]));
                         l++;
                         r--;
+                        
                     }
                     else if(sum>target) r--;
                     else l++;
