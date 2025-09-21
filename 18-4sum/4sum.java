@@ -15,7 +15,8 @@ class Solution {
                         res.add(Arrays.asList(nums[i],nums[j],nums[l],nums[r]));
                         l++;
                         r--;
-                        
+                        while(l<r && nums[l]==nums[l-1]) l++;
+                        while(l<r && nums[r]==nums[r+1]) r--;
                     }
                     else if(sum>target) r--;
                     else l++;
