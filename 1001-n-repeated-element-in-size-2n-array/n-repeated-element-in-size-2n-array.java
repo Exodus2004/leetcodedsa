@@ -7,7 +7,7 @@ class Solution {
              map.put(i,map.getOrDefault(i,0)+1);
             if(map.get(i)==j) return i;
         }
-        return 0;
+         throw null;
         
     }
 }
