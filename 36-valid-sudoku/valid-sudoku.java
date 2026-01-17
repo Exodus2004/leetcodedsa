@@ -28,6 +28,8 @@ class Solution {
         for(int i = 0;i<9;i++){
             int startrow = (i/3)*3;
             int startcol = (i%3)*3;
+            System.out.println(startrow);
+            System.out.println(startcol);
             Set<Character> set = new HashSet<>();
 
             for(int x = 0;x<3;x++){
