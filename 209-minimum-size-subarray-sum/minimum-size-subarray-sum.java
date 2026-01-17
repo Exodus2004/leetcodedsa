@@ -11,10 +11,12 @@ class Solution {
             sum = sum+nums[r];
             while(sum>=target){
                 val = Math.min(val,r-l+1);
+                
                 sum -=nums[l];
                 l++;
 
             }
+            
             
 
 
