@@ -11,7 +11,9 @@ class Solution {
             }
         }
         
-        for(int i[]:matrix) swap(i);
+        for(int i[]:matrix){
+            swap(i);
+        }
         
     }
     void swap(int a[]){
