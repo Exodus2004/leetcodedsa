@@ -1,0 +1,1 @@
+const minBitwiseArray = nums => nums.map(v => v === 2 ? -1 : (((-v - 2) ^ v) / 4) + v);
