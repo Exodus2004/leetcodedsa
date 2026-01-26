@@ -1,22 +1,14 @@
 class Solution {
     public void rotate(int[] nums, int k) {
-        int n = nums.length;
-        k = k%n;
-        swap(nums,0,n-1);
-        swap(nums,0,k-1);
-        swap(nums,k,n-1);
-        
-    }
-
-    public void swap(int a[],int i,int j){
-
-        while(i<j){
-            int t = a[i];
-            a[i] = a[j];
-            a[j] = t;
-            i++;
-            j--;
-
+        List<Integer> res = new ArrayList<>();
+        for(int i: nums) res.add(i);
+        if(k!=0){
+            k = k%res.size();
+            Collections.rotate(res,k);
         }
+        for(int i = 0;i<res.size();i++){
+            nums[i] = res.get(i);
+        }
+        
     }
 }
