@@ -1,0 +1,13 @@
+var getMinDistance = function(nums, target, start) {
+    const n = nums.length;
+    
+    for (let d = 0; d < n; d++) {
+        if (start - d >= 0 && nums[start - d] === target)
+            return d;
+        
+        if (start + d < n && nums[start + d] === target)
+            return d;
+    }
+    
+    return -1;
+};
