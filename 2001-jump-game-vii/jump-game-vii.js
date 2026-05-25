@@ -1,0 +1,1 @@
+const canReach=(t,n,e)=>{if("1"===t[t.length-1])return!1;const h=Array(t.length);h[0]=0;let r=0,a=0,l=n;for(;l<t.length;){const c=h[r++],g=c+e;for(let e=Math.max(c+n,l);e<=g&&e<t.length;++e)"0"===t[e]&&(h[++a]=e);l=Math.max(g+1,l+1)}return h[a]===t.length-1};
